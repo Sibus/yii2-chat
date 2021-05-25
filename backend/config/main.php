@@ -1,4 +1,7 @@
 <?php
+
+use yii\filters\AccessControl;
+
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
@@ -41,6 +44,16 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+            ],
+        ],
+    ],
+    'as access' => [
+        'class' => AccessControl::class,
+        'except' => ['site/login', 'site/error', 'site/logout'],
+        'rules' => [
+            [
+                'allow' => true,
+                'roles' => ['admin'],
             ],
         ],
     ],
