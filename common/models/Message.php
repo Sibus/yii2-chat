@@ -55,4 +55,9 @@ class Message extends ActiveRecord
     {
         return $this->author_id === $userId;
     }
+
+    public static function find(): MessageQuery
+    {
+        return new MessageQuery(get_called_class());
+    }
 }
